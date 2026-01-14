@@ -856,6 +856,7 @@ button:hover{ filter:brightness(1.06); }
     </details>
 
     <div class="finishButtons">
+      <button class="secondaryBtn" onclick="openCertificate()">Get certificate</button>
       <button class="primaryBtn" onclick="emailToWRW()">Send proof</button>
       <button class="secondaryBtn" onclick="closeFinish()">Back to map</button>
     </div>
@@ -888,8 +889,9 @@ button:hover{ filter:brightness(1.06); }
 
 <script>
 /* ACCESS */
-const ACCESS_CODE = "Walkrunwrestle2026";
+const ACCESS_CODE = "Rattlesnake1";
 const WRW_EMAIL = "Log.walkrunwrestle@gmail.com";
+const CERT_URL = "https://walkrunwrestle.github.io/WRW-RATTLESNAKE-CERT/";
 
 /* Run rules */
 const CHALLENGE_KM = 10;
@@ -1645,6 +1647,16 @@ function recordEmailAttempt(user){
   saveData(data);
   updateLastUpdateLabel();
 }
+function openCertificate(){
+  // Opens the certificate page (new tab if allowed, otherwise same tab)
+  try{
+    const w = window.open(CERT_URL, "_blank");
+    if (!w) window.location.href = CERT_URL;
+  }catch(e){
+    window.location.href = CERT_URL;
+  }
+}
+
 function emailToWRW(){
   const raceName = "The Rattlesnake";
   const subject = `${raceName} Completed`;
