@@ -848,7 +848,7 @@ button:hover{ filter:brightness(1.06); }
       <div class="finishHelpBody">
         Some computers don’t support automatic email links. If the button doesn’t open your email app, send your proof manually to:
         <div class="copyRow">
-          <span class="emailMono" id="proofEmail">Log.walkrunwrestle@gmail.com</span>
+          <span class="emailMono" id="proofEmail">Log@walkrunwrestle.com</span>
           <button class="copyBtn" type="button" onclick="copyProofEmail()">Copy</button>
         </div>
         Include your FULL NAME and FIRST LINE OF YOUR ADDRESS and attach your proof in the email.
@@ -889,8 +889,8 @@ button:hover{ filter:brightness(1.06); }
 
 <script>
 /* ACCESS */
-const ACCESS_CODE = "Rattlesnake1";
-const WRW_EMAIL = "Log.walkrunwrestle@gmail.com";
+const ACCESS_CODE = "Walkrunwrestle2026";
+const WRW_EMAIL = "Log@walkrunwrestle.com";
 const CERT_URL = "https://walkrunwrestle.github.io/WRW-RATTLESNAKE-CERT/";
 
 /* Run rules */
@@ -1670,13 +1670,10 @@ function emailToWRW(){
     "Surname:",
     "First line of address:",
     "",
-    "Then attach your proof of completion.",
-    "",
-    "Medals are dispatched on the last Friday of each month.",
-    "Proofs sent after the last Wednesday of the month will be dispatched in the following month."
+    "Then attach your proof of completion."
   ].join("\n");
 
-  // Record attempt (keeps your 'Last update' useful)
+// Record attempt (keeps your 'Last update' useful)
   recordEmailAttempt(getUser() || "unknown");
 
   const mailto =
