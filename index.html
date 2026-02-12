@@ -22,6 +22,25 @@
   height: auto;
 }
 
+/* ADDED: website link under logo */
+.siteLink{
+  text-align:center;
+  margin:-8px 0 14px 0;
+  font-size:12px;
+  letter-spacing:1.5px;
+  opacity:.78;
+}
+.siteLink a{
+  color:var(--text);
+  text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.15);
+  padding-bottom:2px;
+}
+.siteLink a:hover{
+  opacity:1;
+  border-bottom:1px solid rgba(230,184,74,.6);
+}
+
 /* Medal image (login screen) */
 .medalImg{
   display:block;
@@ -757,6 +776,11 @@ button:hover{ filter:brightness(1.06); }
   <div class="loginCard">
 
     <img class="loginLogo" src="logoandtagpng.png" alt="Walk Run Wrestle">
+
+    <!-- ADDED: clickable website link under logo -->
+    <div class="siteLink">
+      <a href="https://walkrunwrestle.com" target="_blank" rel="noopener">WALKRUNWRESTLE.COM</a>
+    </div>
 
     <h1 class="loginTitle">The Rattlesnake</h1>
 
@@ -1829,3 +1853,4 @@ showOnly("auth");
 </script>
 </body>
 </html>
+```0
