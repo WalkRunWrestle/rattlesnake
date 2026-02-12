@@ -1038,7 +1038,9 @@ button:hover{ filter:brightness(1.06); }
 
 <script>
 /* ACCESS */
-const ACCESS_CODE = "Walkrunwrestle2026"const ACCESS_CODES = ["Walkrunwrestle2026", "Testing"];
+/* FIXED: use a single array of allowed codes */
+const ACCESS_CODES = ["WRWRS", "Testing"];
+
 const WRW_EMAIL = "Log@walkrunwrestle.com";
 const CERT_URL = "https://walkrunwrestle.github.io/WRW-RATTLESNAKE-CERT/";
 
@@ -1239,7 +1241,7 @@ function updateUndoButtonState(){
   if (btn) btn.disabled = !has;
 }
 
-/* enable login button only when filled */
+/* enable login button only when filled (harmless if username/password don't exist) */
 function updateLoginButton(){
   const u = (document.getElementById("username")?.value || "").trim();
   const p = (document.getElementById("password")?.value || "");
@@ -1257,17 +1259,18 @@ document.addEventListener("DOMContentLoaded", function(){
   u && u.addEventListener("keydown", (e)=>{ if (e.key==="Enter"){ e.preventDefault(); p && p.focus(); }});
   p && p.addEventListener("keydown", (e)=>{ if (e.key==="Enter"){ e.preventDefault(); login(); }});
   updateLoginButton();
-});;
+});
 
 /* LOGIN */
+/* FIXED: clean login() with ACCESS_CODES check */
 function login(){
   const codeRaw = (document.getElementById("accessCode")?.value || "").trim();
   if (!codeRaw){ alert("Enter your login code."); return; }
 
-  if (codeRaw !== ACCESS_CODEif (!ACCESS_CODES.includes(codeRaw)){
-  alert("Wrong code (case sensitive).");
-  return;
-}){ alert("Wrong code (case sensitive)."); return; }
+  if (!ACCESS_CODES.includes(codeRaw)){
+    alert("Wrong code (case sensitive).");
+    return;
+  }
 
   const u = codeRaw; // use code as user key
 
