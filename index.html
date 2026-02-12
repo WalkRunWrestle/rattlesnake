@@ -93,6 +93,9 @@ button { padding:14px 18px; font-size:16px; background:var(--accent); color:whit
 button:disabled{ opacity:.45; cursor:not-allowed; }
 input { padding:12px; font-size:16px; border-radius:14px; border:1px solid #333; background:var(--panel); color:var(--text); width:100%; }
 
+/* ADDED: show uppercase while typing */
+#accessCode{ text-transform: uppercase; }
+
 .panel { padding:12px; width:92vw; max-width:900px; }
 .leaflet-div-icon { background:transparent !important; border:none !important; }
 
@@ -1038,8 +1041,8 @@ button:hover{ filter:brightness(1.06); }
 
 <script>
 /* ACCESS */
-/* FIXED: use a single array of allowed codes */
-const ACCESS_CODES = ["WRW26", "Testing"];
+/* UPDATED: allow codes (Testing -> TESTING) */
+const ACCESS_CODES = ["WRW26", "TESTING"];
 
 const WRW_EMAIL = "Log@walkrunwrestle.com";
 const CERT_URL = "https://walkrunwrestle.github.io/WRW-RATTLESNAKE-CERT/";
@@ -1251,6 +1254,7 @@ function updateLoginButton(){
   btn.disabled = false;
   btn.style.opacity = ready ? "1" : "0.65";
 }
+
 document.addEventListener("DOMContentLoaded", function(){
   const u = document.getElementById("username");
   const p = document.getElementById("password");
@@ -1259,16 +1263,26 @@ document.addEventListener("DOMContentLoaded", function(){
   u && u.addEventListener("keydown", (e)=>{ if (e.key==="Enter"){ e.preventDefault(); p && p.focus(); }});
   p && p.addEventListener("keydown", (e)=>{ if (e.key==="Enter"){ e.preventDefault(); login(); }});
   updateLoginButton();
+
+  /* ADDED: access code UX (auto-uppercase + Enter to continue) */
+  const accessInput = document.getElementById("accessCode");
+  if (accessInput){
+    accessInput.addEventListener("input", () => {
+      accessInput.value = accessInput.value.toUpperCase();
+    });
+    accessInput.addEventListener("keydown", (e)=>{
+      if (e.key === "Enter"){ e.preventDefault(); login(); }
+    });
+  }
 });
 
 /* LOGIN */
-/* FIXED: clean login() with ACCESS_CODES check */
 function login(){
-  const codeRaw = (document.getElementById("accessCode")?.value || "").trim();
+  const codeRaw = ((document.getElementById("accessCode")?.value || "").trim()).toUpperCase();
   if (!codeRaw){ alert("Enter your login code."); return; }
 
   if (!ACCESS_CODES.includes(codeRaw)){
-    alert("Wrong code (case sensitive).");
+    alert("That code doesn’t match. Check spelling and try again.");
     return;
   }
 
@@ -1766,6 +1780,7 @@ function emailToWRW(){
   ].join("\n");
 
   recordEmailAttempt(getUser() || "unknown");
+  showToast("Email draft opened ✅ attach proof then send", 1800);
 
   const mailto =
     `mailto:${encodeURIComponent(WRW_EMAIL)}` +
