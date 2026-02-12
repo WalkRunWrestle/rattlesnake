@@ -483,23 +483,54 @@ input { padding:12px; font-size:16px; border-radius:14px; border:1px solid #333;
   white-space:nowrap;
 }
 
-/* ADDED: finish CTA back to website */
+/* ✅ UPDATED: finish CTA uses the same gold "box" style */
 .finishCta{
-  margin-top:12px;
+  margin-top:14px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+.finishCtaLabel{
   font-size:13px;
   font-weight:900;
-  letter-spacing:.6px;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
   opacity:.92;
 }
 .finishCta a{
-  color:var(--text);
+  display:inline-block;
+  padding:12px 18px;
+  border-radius:16px;
+
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+
+  color:#141418;
   text-decoration:none;
-  border-bottom:1px solid rgba(255,255,255,.18);
-  padding-bottom:2px;
+
+  background: linear-gradient(135deg, rgba(230,184,74,1), rgba(255,214,107,1), rgba(194,143,44,1));
+  border:1px solid rgba(255,214,107,.95);
+
+  box-shadow:
+    0 16px 36px rgba(0,0,0,.65),
+    0 0 22px rgba(230,184,74,.25);
+
+  transition: transform .15s ease, filter .15s ease;
 }
 .finishCta a:hover{
-  border-bottom:1px solid rgba(230,184,74,.75);
-  text-shadow: 0 0 16px rgba(230,184,74,.18);
+  filter:brightness(1.06);
+  transform: translateY(-1px);
+}
+@media (max-width:420px){
+  .finishCta a{
+    width:min(360px, 86vw);
+    text-align:center;
+    padding:14px 18px;
+    font-size:18px;
+  }
 }
 
 .finishNext{
@@ -524,6 +555,7 @@ input { padding:12px; font-size:16px; border-radius:14px; border:1px solid #333;
   line-height:1.45;
 }
 .finishSteps b{ color:var(--text); }
+
 .finishHelp{
   margin-top:12px;
   text-align:left;
@@ -836,10 +868,8 @@ button:hover{ filter:brightness(1.06); }
 
     <img class="loginLogo" src="logoandtagpng.png" alt="Walk Run Wrestle">
 
-    <!-- ADDED: micro line -->
     <div class="microLine">OFFICIAL WRW TRACKER</div>
 
-    <!-- UPDATED: clickable website link under logo -->
     <div class="siteLink">
       <a href="https://walkrunwrestle.com" target="_blank" rel="noopener">VISIT WALKRUNWRESTLE.COM →</a>
     </div>
@@ -853,9 +883,6 @@ button:hover{ filter:brightness(1.06); }
     <div class="fieldWrap">
       <input id="accessCode" placeholder="Login code" autocomplete="one-time-code" />
     </div>
-
-    <!-- UPDATED: remove emoji + make it authoritative -->
-
 
     <button id="loginBtn" onclick="login()" style="width:100%; margin-top:12px;">Continue</button>
 
@@ -880,7 +907,6 @@ button:hover{ filter:brightness(1.06); }
     <div class="welcomeLine">Welcome <span id="displayName"></span></div>
     <div id="splashProgress" class="progressLine">Progress: 0.00 / 10.00 km</div>
 
-    <!-- KNOX -->
     <div class="knoxBlock">
       <img class="knoxImg" src="Knox arms crossed.png" alt="Knox" />
       <div class="knoxLine">KNOX: EARN YOUR MILES.</div>
@@ -892,7 +918,7 @@ button:hover{ filter:brightness(1.06); }
         <input id="displayNameInput" type="text" placeholder="Type your name" style="flex:1 1 auto;" />
         <button type="button" class="pillBtn" onclick="saveDisplayName()" style="padding:10px 12px; border-radius:14px;">Save</button>
       </div>
-      <div style="font-size:12px; opacity:.75; margin-top:6px;">This is only shown inside the app. Your login code stays private.</div>
+      <div style="font-size:12px; opacity:.75; margin-top:6px;">This is only shown inside the app.</div>
     </div>
 
     <div class="nextLine">Tap Continue to open the map and log your distance.</div>
@@ -1002,9 +1028,10 @@ button:hover{ filter:brightness(1.06); }
       <span class="statPill">🕒 Completed: <b id="finishWhen">—</b></span>
     </div>
 
-    <!-- ADDED: post-finish conversion CTA -->
+    <!-- ✅ UPDATED: gold boxed link (won't break when line wraps) -->
     <div class="finishCta">
-      Ready for your next challenge? <a href="https://walkrunwrestle.com" target="_blank" rel="noopener">WalkRunWrestle.com</a>
+      <div class="finishCtaLabel">READY FOR YOUR NEXT CHALLENGE?</div>
+      <a href="https://walkrunwrestle.com" target="_blank" rel="noopener">WALKRUNWRESTLE.COM →</a>
     </div>
 
     <div class="finishNext">
@@ -1012,7 +1039,7 @@ button:hover{ filter:brightness(1.06); }
       <ol class="finishSteps">
         <li>Tap <b>Send proof</b> to open an email to us.</li>
         <li>Attach a screenshot/activity proof from your tracker (e.g. Strava/Garmin/Apple/Samsung or even a photo of your step count) showing your <b>distance</b> and <b>date</b>.</li>
-        <li>Send it — We will do the rest <b> (We dispatch medals twice monthly, You will recieve a  Email when they have been dispatched) </li>
+        <li>Send it — We will do the rest <b>(We dispatch medals twice monthly, you will receive an email when they have been dispatched)</b>.</li>
       </ol>
     </div>
 
@@ -1062,7 +1089,6 @@ button:hover{ filter:brightness(1.06); }
 
 <script>
 /* ACCESS */
-/* UPDATED: allow codes (Testing -> TESTING) */
 const ACCESS_CODES = ["WRW26", "TESTING"];
 
 const WRW_EMAIL = "Log@walkrunwrestle.com";
@@ -1133,8 +1159,6 @@ function saveDisplayName(){
   refreshNameUI();
   showToast("Name saved ✅", 1200);
 }
-function escapeHtml(s){ return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;"); }
-function jsSafe(s){ return String(s).replaceAll("\\","\\\\").replaceAll("'","\\'"); }
 function clamp(n, lo, hi){ return Math.max(lo, Math.min(hi, n)); }
 
 /* Show only one section */
@@ -1162,21 +1186,6 @@ function logout(){
 function displayTime(iso){
   if (!iso) return "—";
   try { return new Date(iso).toLocaleString(); } catch(e){ return "—"; }
-}
-function timeAgo(iso){
-  if (!iso) return "—";
-  const t = new Date(iso).getTime();
-  if (!isFinite(t)) return "—";
-  const diff = Date.now() - t;
-  const s = Math.floor(diff/1000);
-  if (s < 10) return "just now";
-  if (s < 60) return `${s}s ago`;
-  const m = Math.floor(s/60);
-  if (m < 60) return `${m}m ago`;
-  const h = Math.floor(m/60);
-  if (h < 48) return `${h}h ago`;
-  const d = Math.floor(h/24);
-  return `${d}d ago`;
 }
 
 /* Toast */
@@ -1209,12 +1218,10 @@ function isLoggingLocked(){
 function setLoggingEnabled(enabled){
   loggingLocked = !enabled;
 
-  // Disable/enable log controls
   document.querySelectorAll(".quickBtn, .addBtn").forEach(b => b.disabled = !enabled);
   const input = document.getElementById("input");
   if (input) input.disabled = !enabled;
 
-  // Optional visual cue
   const wrap = document.querySelector(".quickRow");
   if (wrap) wrap.style.opacity = enabled ? "1" : "0.55";
 }
@@ -1265,27 +1272,7 @@ function updateUndoButtonState(){
   if (btn) btn.disabled = !has;
 }
 
-/* enable login button only when filled (harmless if username/password don't exist) */
-function updateLoginButton(){
-  const u = (document.getElementById("username")?.value || "").trim();
-  const p = (document.getElementById("password")?.value || "");
-  const btn = document.getElementById("loginBtn");
-  if (!btn) return;
-  const ready = (u.length && p.length);
-  btn.disabled = false;
-  btn.style.opacity = ready ? "1" : "0.65";
-}
-
 document.addEventListener("DOMContentLoaded", function(){
-  const u = document.getElementById("username");
-  const p = document.getElementById("password");
-  u && u.addEventListener("input", updateLoginButton);
-  p && p.addEventListener("input", updateLoginButton);
-  u && u.addEventListener("keydown", (e)=>{ if (e.key==="Enter"){ e.preventDefault(); p && p.focus(); }});
-  p && p.addEventListener("keydown", (e)=>{ if (e.key==="Enter"){ e.preventDefault(); login(); }});
-  updateLoginButton();
-
-  /* ADDED: access code UX (auto-uppercase + Enter to continue) */
   const accessInput = document.getElementById("accessCode");
   if (accessInput){
     accessInput.addEventListener("input", () => {
@@ -1307,7 +1294,7 @@ function login(){
     return;
   }
 
-  const u = codeRaw; // use code as user key
+  const u = codeRaw;
 
   const data = getData();
   if (!data[u]){
@@ -1350,7 +1337,6 @@ function backToTop(){ window.scrollTo({ top: 0, behavior: "smooth" }); }
    MAP + ROUTE + PROGRESS
 ========================= */
 
-/* Beer bottle route in blank region */
 const START = [24.65, 12.65];
 
 function haversineMeters(a, b){
@@ -1432,7 +1418,6 @@ const ROUTE = scaleRouteToMeters(generateBottleRouteBase(), TARGET_ROUTE_METERS)
 let map, redLine, greenLine, progressDot;
 let distCum = [], totalMeters = 0;
 let popped = new Set();
-let lastLoggedDistance = null;
 
 let mapLocked = true;
 
@@ -1450,7 +1435,6 @@ function teardownMap(){
   distCum = [];
   totalMeters = 0;
   popped = new Set();
-  lastLoggedDistance = null;
   mapLocked = true;
 }
 
@@ -1525,8 +1509,7 @@ function startRun(){
     weight: 2,
     color: getComputedStyle(document.documentElement).getPropertyValue('--green').trim(),
     fillColor: getComputedStyle(document.documentElement).getPropertyValue('--green').trim(),
-    fillOpacity: 0.9,
-    className: "pulse-dot"
+    fillOpacity: 0.9
   }).addTo(map);
 
   fitRoute();
@@ -1641,14 +1624,6 @@ function requestQuick(km, btn){
 function confirmAddKm(km){
   return confirm(`You are adding +${Number(km).toFixed(2)} km.\n\nPress OK to confirm.`);
 }
-function requestLog(km){ return requestQuick(km); }
-
-function requestLogWithConfirm(km){
-  km = Number(km);
-  if (!km || km <= 0) return;
-  if (!confirmAddKm(km)) return;
-  doLog(km);
-}
 function parseKmInput(raw){
   if (raw == null) return NaN;
   const s = String(raw).trim().replace(",", ".");
@@ -1663,7 +1638,9 @@ function requestLogFromInputConfirm(btn){
 
   const v = parseKmInput(document.getElementById("input").value);
   if (!v || v <= 0) return;
-  requestLogWithConfirm(v);
+  if (!confirmAddKm(v)) return;
+
+  doLog(v);
   if (btn && btn.dataset) setTimeout(()=>{ btn.dataset.busy = "0"; }, 900);
 }
 
@@ -1695,8 +1672,6 @@ function undoLast(){
 
   data[u].last_update = new Date().toISOString();
   saveData(data);
-
-  lastLoggedDistance = null;
 
   setProgressUI(after);
   setProgressInstant(after);
@@ -1731,7 +1706,6 @@ function doLog(addKm){
   }
 
   saveData(data);
-  lastLoggedDistance = addKm;
 
   setProgressUI(after);
   animateProgress(before, after);
