@@ -22,6 +22,20 @@
   height: auto;
 }
 
+/* Medal image (login screen) */
+.medalImg{
+  display:block;
+  margin:14px auto 10px auto;
+  width:min(240px, 76vw);
+  height:auto;
+  border-radius:18px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(47,128,255,.18);
+  box-shadow:
+    0 18px 60px rgba(0,0,0,.55),
+    0 0 18px rgba(230,184,74,.10);
+}
+
 :root{
   --bg:#0B0B0D;          /* asphalt black */
   --panel:#15171B;       /* dark steel */
@@ -719,6 +733,10 @@ button:hover{ filter:brightness(1.06); }
     <img class="loginLogo" src="logoandtagpng.png" alt="Walk Run Wrestle">
 
     <h1 class="loginTitle">The Rattlesnake</h1>
+
+    <!-- Medal image added here -->
+    <img class="medalImg" src="Rattmed.png" alt="The Rattlesnake Medal">
+
     <div class="loginSub">Enter your login code to track your The Rattlesnake progress.</div>
 
     <div class="fieldWrap">
