@@ -16,29 +16,41 @@
 
 .loginLogo {
   display: block;
-  margin: 0 auto 16px auto;
+  margin: 0 auto 10px auto;
   max-width: 160px;
   width: 100%;
   height: auto;
 }
 
-/* ADDED: website link under logo */
+/* ADDED: micro line under logo */
+.microLine{
+  text-align:center;
+  margin:-2px 0 10px 0;
+  font-size:11px;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+  opacity:.72;
+}
+
+/* UPDATED: website link under logo (more intentional) */
 .siteLink{
   text-align:center;
-  margin:-8px 0 14px 0;
+  margin:-6px 0 14px 0;
   font-size:12px;
-  letter-spacing:1.5px;
-  opacity:.78;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  opacity:.82;
 }
 .siteLink a{
   color:var(--text);
   text-decoration:none;
-  border-bottom:1px solid rgba(255,255,255,.15);
+  border-bottom:1px solid rgba(255,255,255,.18);
   padding-bottom:2px;
 }
 .siteLink a:hover{
   opacity:1;
-  border-bottom:1px solid rgba(230,184,74,.6);
+  border-bottom:1px solid rgba(230,184,74,.75);
+  text-shadow: 0 0 16px rgba(230,184,74,.18);
 }
 
 /* Medal image (login screen) */
@@ -373,13 +385,11 @@ input { padding:12px; font-size:16px; border-radius:14px; border:1px solid #333;
 .finishCard{
   text-align:center;
   padding:18px 16px;
-
-  /* ADDED: poster-style medal background support */
   position:relative;
   overflow:hidden;
 }
 
-/* ADDED: poster-style medal background */
+/* poster-style medal background */
 .finishCard:before{
   content:"";
   position:absolute;
@@ -394,7 +404,7 @@ input { padding:12px; font-size:16px; border-radius:14px; border:1px solid #333;
   z-index:0;
 }
 
-/* ADDED: keep finish content above background */
+/* keep finish content above background */
 .finishCard > *{
   position:relative;
   z-index:2;
@@ -448,6 +458,26 @@ input { padding:12px; font-size:16px; border-radius:14px; border:1px solid #333;
   font-weight:800;
   white-space:nowrap;
 }
+
+/* ADDED: finish CTA back to website */
+.finishCta{
+  margin-top:12px;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.6px;
+  opacity:.92;
+}
+.finishCta a{
+  color:var(--text);
+  text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.18);
+  padding-bottom:2px;
+}
+.finishCta a:hover{
+  border-bottom:1px solid rgba(230,184,74,.75);
+  text-shadow: 0 0 16px rgba(230,184,74,.18);
+}
+
 .finishNext{
   margin-top:14px;
   text-align:left;
@@ -559,8 +589,14 @@ input { padding:12px; font-size:16px; border-radius:14px; border:1px solid #333;
   color:var(--text); padding:6px 10px; border-radius:10px;
   font-size:12px; cursor:pointer; opacity:.9;
 }
-.warnLine{ margin-top:6px; opacity:.9; font-size:12px; text-align:center; }
-.warnLine b{ color:#ffd1d1; }
+.warnLine{
+  margin-top:8px;
+  opacity:.9;
+  font-size:12px;
+  text-align:center;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+}
 .helpLine{ margin-top:10px; opacity:.75; font-size:12px; text-align:center; }
 
 /* Splash */
@@ -621,7 +657,6 @@ input { padding:12px; font-size:16px; border-radius:14px; border:1px solid #333;
   width: 120px;
   height: auto;
   display:block;
-  /* less saturated / more gritty (PNG is unchanged) */
   filter: saturate(0.65) contrast(1.05);
 }
 .knoxLine{
@@ -777,14 +812,16 @@ button:hover{ filter:brightness(1.06); }
 
     <img class="loginLogo" src="logoandtagpng.png" alt="Walk Run Wrestle">
 
-    <!-- ADDED: clickable website link under logo -->
+    <!-- ADDED: micro line -->
+    <div class="microLine">OFFICIAL WRW TRACKER</div>
+
+    <!-- UPDATED: clickable website link under logo -->
     <div class="siteLink">
-      <a href="https://walkrunwrestle.com" target="_blank" rel="noopener">WALKRUNWRESTLE.COM</a>
+      <a href="https://walkrunwrestle.com" target="_blank" rel="noopener">VISIT WALKRUNWRESTLE.COM →</a>
     </div>
 
     <h1 class="loginTitle">The Rattlesnake</h1>
 
-    <!-- Medal image added here -->
     <img class="medalImg" src="Rattmed.png" alt="The Rattlesnake Medal">
 
     <div class="loginSub">Enter your login code to track your The Rattlesnake progress.</div>
@@ -793,7 +830,8 @@ button:hover{ filter:brightness(1.06); }
       <input id="accessCode" placeholder="Login code" autocomplete="one-time-code" />
     </div>
 
-    <div class="warnLine">🔑 Your code is <b>case sensitive</b>.</div>
+    <!-- UPDATED: remove emoji + make it authoritative -->
+    <div class="warnLine">LOGIN CODES ARE CASE SENSITIVE.</div>
 
     <button id="loginBtn" onclick="login()" style="width:100%; margin-top:12px;">Continue</button>
 
@@ -818,7 +856,7 @@ button:hover{ filter:brightness(1.06); }
     <div class="welcomeLine">Welcome <span id="displayName"></span></div>
     <div id="splashProgress" class="progressLine">Progress: 0.00 / 10.00 km</div>
 
-    <!-- KNOX (added) -->
+    <!-- KNOX -->
     <div class="knoxBlock">
       <img class="knoxImg" src="Knox arms crossed.png" alt="Knox" />
       <div class="knoxLine">KNOX: EARN YOUR MILES.</div>
@@ -940,6 +978,11 @@ button:hover{ filter:brightness(1.06); }
       <span class="statPill">🕒 Completed: <b id="finishWhen">—</b></span>
     </div>
 
+    <!-- ADDED: post-finish conversion CTA -->
+    <div class="finishCta">
+      Ready for your next challenge? <a href="https://walkrunwrestle.com" target="_blank" rel="noopener">WalkRunWrestle.com</a>
+    </div>
+
     <div class="finishNext">
       <div class="finishNextTitle">Next step to claim your medal</div>
       <ol class="finishSteps">
@@ -978,7 +1021,7 @@ button:hover{ filter:brightness(1.06); }
     </div>
 
     <ul style="margin:10px 0 0; padding-left:18px; color:var(--muted); font-size:13px; line-height:1.45;">
-      <li>Use the <b>+0.5 / +1 / +2</b> buttons or type your km and tap <b>Add</b>.</li>
+      <li>Use the <b>+1 / +3 / +5</b> buttons or type your km and tap <b>Add</b>.</li>
       <li>Your progress <b>auto-saves on this device</b>.</li>
       <li><b>Send proof</b> opens an email draft — please attach <b>screenshots and/or proof</b> before sending.</li>
       <li><b>Map is locked by default</b> so the page scrolls. Tap <b>Unlock map</b> to move/zoom it.</li>
@@ -1203,16 +1246,12 @@ function updateLoginButton(){
   const btn = document.getElementById("loginBtn");
   if (!btn) return;
   const ready = (u.length && p.length);
-  // Some mobile editors/WebViews don't reliably re-enable disabled buttons.
-  // So we NEVER hard-disable; we just change opacity to hint.
   btn.disabled = false;
   btn.style.opacity = ready ? "1" : "0.65";
 }
 document.addEventListener("DOMContentLoaded", function(){
   const u = document.getElementById("username");
   const p = document.getElementById("password");
-  // If this file is viewed inside an editor preview that doesn't fire input events reliably,
-  // the Login button is still clickable (we removed the disabled attribute in HTML).
   u && u.addEventListener("input", updateLoginButton);
   p && p.addEventListener("input", updateLoginButton);
   u && u.addEventListener("keydown", (e)=>{ if (e.key==="Enter"){ e.preventDefault(); p && p.focus(); }});
@@ -1289,17 +1328,11 @@ function totalRouteMeters(route){
   return m;
 }
 
-/* Beer bottle outline (single continuous line).
-   We generate a recognisable bottle silhouette in "local" coords,
-   then scale it to the target map meters so the progress ratio holds. */
 function generateBottleRouteBase(){
-  // Simple upright bottle outline (minimal detail, clean corners)
-  // Built in abstract XY coords then mapped to lat/lng around START.
   const pts = [];
 
-  // Geometry (tweakable)
-  const H = 3.10;        // total height
-  const W = 0.70;        // half width of main body
+  const H = 3.10;
+  const W = 0.70;
   const NECK_W = 0.22;
   const LIP_W  = 0.28;
 
@@ -1309,12 +1342,10 @@ function generateBottleRouteBase(){
   const LIP_Y       = 2.90;
   const TOP_Y       = H;
 
-  // Map scaling from XY -> lat/lng
   const LAT_SCALE = 0.34;
   const LNG_SCALE = 0.30;
 
   function pushXY(x, y){
-    // y increases upward; latitude increases upward
     pts.push([START[0] + y * LAT_SCALE, START[1] + x * LNG_SCALE]);
   }
 
@@ -1329,40 +1360,17 @@ function generateBottleRouteBase(){
     }
   }
 
-  // Start at bottom-left
   pushXY(-W, BODY_Y);
-
-  // Left wall up
   pushXY(-W, SHOULDER_Y);
-
-  // Shoulder curve to neck
   sideCurve(-W, -NECK_W, SHOULDER_Y, NECK_Y, 10);
-
-  // Neck up
   pushXY(-NECK_W, LIP_Y);
-
-  // Lip flare to top
   sideCurve(-NECK_W, -LIP_W, LIP_Y, TOP_Y, 6);
-
-  // Across top
   pushXY(LIP_W, TOP_Y);
-
-  // Right lip back to neck
   sideCurve(LIP_W, NECK_W, TOP_Y, LIP_Y, 6);
-
-  // Neck down to shoulder start
   pushXY(NECK_W, NECK_Y);
-
-  // Shoulder curve back to body
   sideCurve(NECK_W, W, NECK_Y, SHOULDER_Y, 10);
-
-  // Right wall down
   pushXY(W, BODY_Y);
-
-  // Close along bottom
   pushXY(-W, BODY_Y);
-
-  // Ensure closed
   pts.push(pts[0]);
   return pts;
 }
@@ -1380,16 +1388,13 @@ function scaleRouteToMeters(route, targetMeters){
 
 const ROUTE = scaleRouteToMeters(generateBottleRouteBase(), TARGET_ROUTE_METERS);
 
-/* MAP STATE */
 let map, redLine, greenLine, progressDot;
 let distCum = [], totalMeters = 0;
 let popped = new Set();
 let lastLoggedDistance = null;
 
-/* Map lock state */
 let mapLocked = true;
 
-/* Clean teardown so switching pages is safe */
 function teardownMap(){
   try{
     if (map){
@@ -1408,7 +1413,6 @@ function teardownMap(){
   mapLocked = true;
 }
 
-/* Map lock/unlock */
 function applyMapLockState(){
   if (!map) return;
   const mapEl = document.getElementById("map");
@@ -1445,18 +1449,15 @@ function toggleMapLock(){
   showToast(mapLocked ? "Map locked 🔒 (scroll page normally)" : "Map unlocked 🗺️ (move/zoom)", 1200);
 }
 
-/* START RUN */
 function startRun(){
   const u = getUser() || "";
   showOnly("run");
 
-  // Show display name (or fallback to username) in the UI
   refreshNameUI();
 
   teardownMap();
   map = L.map("map", { zoomControl: true }).setView(START, 9);
 
-  // Locked by default (better scrolling)
   mapLocked = true;
   applyMapLockState();
 
@@ -1478,7 +1479,6 @@ function startRun(){
   redLine = L.polyline(ROUTE, { color: getComputedStyle(document.documentElement).getPropertyValue('--routeLine').trim() || 'rgba(47,128,255,.95)', weight:4, opacity:0.92 }).addTo(map);
   greenLine = L.polyline([], { color: getComputedStyle(document.documentElement).getPropertyValue('--green').trim(), weight:6, opacity:0.95, className:'shiny-route' }).addTo(map);
 
-  // Subtle pulsing progress dot (small + NO SCALE)
   progressDot = L.circleMarker(ROUTE[0], {
     radius: 4,
     weight: 2,
@@ -1514,7 +1514,6 @@ function startRun(){
   }
 }
 
-/* Map controls */
 function recenter(){
   if (!map) return;
   map.setView(START, 9, { animate:true });
@@ -1524,7 +1523,6 @@ function fitRoute(){
   map.fitBounds(redLine.getBounds(), { padding:[26,26] });
 }
 
-/* PROGRESS helpers */
 function metersForLoggedKm(loggedKm){
   const clamped = Math.max(0, Math.min(CHALLENGE_KM, loggedKm));
   return (clamped / CHALLENGE_KM) * totalMeters;
@@ -1574,19 +1572,15 @@ function animateProgress(fromLoggedKm, toLoggedKm){
   requestAnimationFrame(step);
 }
 
-/* QUICK LOG (no confirmation) */
 function requestQuick(km, btn){
-  // Lock logging once completed
   if (isLoggingLocked()) return;
 
   km = Number(km);
   if (!km || km <= 0) return;
 
-  // Prevent accidental double-taps
   if (btn && btn.dataset && btn.dataset.busy === "1") return;
   if (btn && btn.dataset) btn.dataset.busy = "1";
 
-  // Button feedback
   const oldText = btn ? btn.textContent : "";
   if (btn){
     btn.disabled = true;
@@ -1595,7 +1589,6 @@ function requestQuick(km, btn){
 
   doLog(km);
 
-  // Restore button after a short moment
   if (btn){
     setTimeout(()=>{
       btn.disabled = false;
@@ -1607,11 +1600,8 @@ function requestQuick(km, btn){
 function confirmAddKm(km){
   return confirm(`You are adding +${Number(km).toFixed(2)} km.\n\nPress OK to confirm.`);
 }
-
-/* Backwards compatibility: if anything still calls requestLog, treat it as quick (no confirm) */
 function requestLog(km){ return requestQuick(km); }
 
-/* LOG */
 function requestLogWithConfirm(km){
   km = Number(km);
   if (!km || km <= 0) return;
@@ -1625,10 +1615,8 @@ function parseKmInput(raw){
   return Number(s);
 }
 function requestLogFromInputConfirm(btn){
-  // Lock logging once completed
   if (isLoggingLocked()) return;
 
-  // Prevent accidental double-taps on the Add button
   if (btn && btn.dataset && btn.dataset.busy === "1") return;
   if (btn && btn.dataset) btn.dataset.busy = "1";
 
@@ -1638,7 +1626,6 @@ function requestLogFromInputConfirm(btn){
   if (btn && btn.dataset) setTimeout(()=>{ btn.dataset.busy = "0"; }, 900);
 }
 
-/* UNDO */
 function undoLast(){
   const u = getUser();
   const data = getData();
@@ -1681,7 +1668,6 @@ function undoLast(){
   updateUndoButtonState();
 }
 
-/* LOG */
 function doLog(addKm){
   const data = getData();
   const u = getUser();
@@ -1737,7 +1723,6 @@ function doLog(addKm){
   }
 }
 
-/* EMAIL */
 function recordEmailAttempt(user){
   const data = getData();
   if (!data[user]) return;
@@ -1750,7 +1735,6 @@ function recordEmailAttempt(user){
   updateLastUpdateLabel();
 }
 function openCertificate(){
-  // Opens the certificate page (new tab if allowed, otherwise same tab)
   try{
     const w = window.open(CERT_URL, "_blank");
     if (!w) window.location.href = CERT_URL;
@@ -1775,7 +1759,6 @@ function emailToWRW(){
     "Then attach your proof of completion."
   ].join("\n");
 
-  // Record attempt (keeps your 'Last update' useful)
   recordEmailAttempt(getUser() || "unknown");
 
   const mailto =
@@ -1792,20 +1775,16 @@ function copyProofEmail(){
 
   const done = () => showToast("Email copied ✅", 1200);
 
-  // Modern clipboard
   if (navigator.clipboard && navigator.clipboard.writeText){
     navigator.clipboard.writeText(email).then(done).catch(() => {
-      // Fallback prompt
       window.prompt("Copy this email address:", email);
     });
     return;
   }
 
-  // Fallback prompt
   window.prompt("Copy this email address:", email);
 }
 
-/* FINISH */
 function showFinish(){
   try{ const pe=document.getElementById("proofEmail"); if(pe && typeof WRW_EMAIL!=="undefined") pe.textContent=WRW_EMAIL; }catch(e){}
   const u = getUser() || "You";
@@ -1817,7 +1796,6 @@ function showFinish(){
     try { return new Date(whenISO).toLocaleString(); } catch(e){ return "—"; }
   })();
 
-  // Use saved display name in the finish popup
   refreshNameUI();
   document.getElementById("finishTotal").textContent = total;
   document.getElementById("finishWhen").textContent = whenNice;
@@ -1826,12 +1804,10 @@ function showFinish(){
 }
 function closeFinish(){ document.getElementById("finishOverlay").style.display = "none"; }
 
-/* ===== Map comes back after leaving to email ===== */
 function refreshMapAfterReturn(){
   if (!map) return;
   try{
     map.invalidateSize(true);
-    // keep it tidy: if user comes back and it looks blank, fit once
     if (redLine) map.fitBounds(redLine.getBounds(), { padding:[26,26] });
   }catch(e){}
 }
@@ -1848,9 +1824,7 @@ window.addEventListener("pageshow", ()=>{
   setTimeout(refreshMapAfterReturn, 120);
 });
 
-/* Splash -> Run */
 showOnly("auth");
 </script>
 </body>
 </html>
-```0
