@@ -1038,7 +1038,7 @@ button:hover{ filter:brightness(1.06); }
 
 <script>
 /* ACCESS */
-const ACCESS_CODE = "Walkrunwrestle2026";
+const ACCESS_CODE = "Walkrunwrestle2026"const ACCESS_CODES = ["Walkrunwrestle2026", "Testing"];
 const WRW_EMAIL = "Log@walkrunwrestle.com";
 const CERT_URL = "https://walkrunwrestle.github.io/WRW-RATTLESNAKE-CERT/";
 
@@ -1264,7 +1264,10 @@ function login(){
   const codeRaw = (document.getElementById("accessCode")?.value || "").trim();
   if (!codeRaw){ alert("Enter your login code."); return; }
 
-  if (codeRaw !== ACCESS_CODE){ alert("Wrong code (case sensitive)."); return; }
+  if (codeRaw !== ACCESS_CODEif (!ACCESS_CODES.includes(codeRaw)){
+  alert("Wrong code (case sensitive).");
+  return;
+}){ alert("Wrong code (case sensitive)."); return; }
 
   const u = codeRaw; // use code as user key
 
