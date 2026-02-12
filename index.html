@@ -354,7 +354,33 @@ input { padding:12px; font-size:16px; border-radius:14px; border:1px solid #333;
 .finishCard{
   text-align:center;
   padding:18px 16px;
+
+  /* ADDED: poster-style medal background support */
+  position:relative;
+  overflow:hidden;
 }
+
+/* ADDED: poster-style medal background */
+.finishCard:before{
+  content:"";
+  position:absolute;
+  inset:-20px;
+  background-image: url("Rattmed.png");
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-size:min(700px, 95%);
+  opacity:0.08;
+  filter:saturate(0.7) contrast(1.05) blur(1px);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ADDED: keep finish content above background */
+.finishCard > *{
+  position:relative;
+  z-index:2;
+}
+
 .finishTop{
   display:flex;
   align-items:center;
