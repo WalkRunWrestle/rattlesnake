@@ -834,7 +834,7 @@ button:hover{ filter:brightness(1.06); }
     </div>
 
     <!-- UPDATED: remove emoji + make it authoritative -->
-    <div class="warnLine">LOGIN CODES ARE CASE SENSITIVE.</div>
+
 
     <button id="loginBtn" onclick="login()" style="width:100%; margin-top:12px;">Continue</button>
 
@@ -1282,7 +1282,7 @@ function login(){
   if (!codeRaw){ alert("Enter your login code."); return; }
 
   if (!ACCESS_CODES.includes(codeRaw)){
-    alert("That code doesn’t match. Check spelling and try again.");
+    alert("That code doesn’t match. Check spelling and try again, Forget your code? Check your Emails or DM us.");
     return;
   }
 
